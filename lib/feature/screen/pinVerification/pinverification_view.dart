@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_manager/core/context_extension.dart';
 import 'package:task_manager/feature/common/commonButton.dart';
 import 'package:task_manager/feature/common/common_background.dart';
@@ -13,18 +14,37 @@ class PinVerificationView extends GetView<PinVerificationController> {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
         body: CommonBackground(child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(40.0),
           child: Form(child: Column(
             children: [
               SizedBox(height: 250,),
-              Text(context.localization.yourEmailAddress,style: theme.titleLarge,),
+              Text(context.localization.pinVerification,style: theme.titleLarge,),
               SizedBox(height: 8,),
               Text(context.localization.a6DigitVerificationPinWillSendToYourEmailAddress,style: theme.titleMedium,),
               SizedBox(height: 20,),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "Email",
+              PinCodeTextField(
+                length: 6,
+                obscureText: false,
+                animationType: AnimationType.fade,
+                pinTheme: PinTheme(
+                  shape: PinCodeFieldShape.box,
+                  borderRadius: BorderRadius.circular(5),
+                  fieldHeight: 50,
+                  fieldWidth: 40,
+                  activeFillColor: Colors.white,
+                  inactiveFillColor: Colors.white,
+                  inactiveColor: Colors.white,
                 ),
+
+                backgroundColor: Colors.transparent,
+                enableActiveFill: true,
+
+                beforeTextPaste: (text) {
+                  print("Allowing to paste $text");
+                  //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+                  //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                  return true;
+                }, appContext: context,
               ),
               SizedBox(height: 20,),
               CommonButton(child: (){},),
