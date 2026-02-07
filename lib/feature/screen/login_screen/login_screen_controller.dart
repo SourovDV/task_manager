@@ -5,4 +5,8 @@ class LoginScreenController extends GetxController{
   void moveToForgetPasswordViewPage(){
     Get.toNamed(AppPages.forgetPassword);
   }
+
+  void moveToSignUpScreenView (){
+    Get.toNamed(AppPages.signUp);
+  }
 }

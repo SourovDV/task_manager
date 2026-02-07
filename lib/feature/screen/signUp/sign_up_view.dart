@@ -3,33 +3,49 @@ import 'package:get/get.dart';
 import 'package:task_manager/core/context_extension.dart';
 import 'package:task_manager/feature/common/commonButton.dart';
 import 'package:task_manager/feature/common/common_background.dart';
-import 'package:task_manager/feature/screen/setPassword/set_password_controller.dart';
+import 'package:task_manager/feature/screen/signUp/sign_up_controller.dart';
 
-class SetPasswordView extends GetView<SetPasswordController> {
-  const SetPasswordView({super.key});
+class SignUpView extends GetView<SignUpController> {
+  const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
         body: CommonBackground(child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(30.0),
           child: Form(child: Column(
             children: [
               SizedBox(height: 250,),
-              Text(context.localization.setPassword,style: theme.titleLarge,),
-              SizedBox(height: 8,),
-              Text(context.localization.minimumLengthPassword8CharacterWithLatterAndNumber,style: theme.titleMedium,),
+              Text(context.localization.joinWithUp,style: theme.titleLarge,),
               SizedBox(height: 20,),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: "Password",
+                  hintText: "Email",
                 ),
               ),
               SizedBox(height: 10,),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: "Confirm Password",
+                  hintText: "First Name",
+                ),
+              ),
+              SizedBox(height: 10,),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Last Name",
+                ),
+              ),
+              SizedBox(height: 10,),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Mobile",
+                ),
+              ),
+              SizedBox(height: 10,),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Password",
                 ),
               ),
               SizedBox(height: 20,),

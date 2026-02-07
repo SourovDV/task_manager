@@ -6,6 +6,10 @@ import 'package:task_manager/feature/screen/login_screen/login_screen_bindings.d
 import 'package:task_manager/feature/screen/login_screen/login_screen_view.dart';
 import 'package:task_manager/feature/screen/pinVerification/pin_verification_bindings.dart';
 import 'package:task_manager/feature/screen/pinVerification/pinverification_view.dart';
+import 'package:task_manager/feature/screen/setPassword/setPasswordView.dart';
+import 'package:task_manager/feature/screen/setPassword/set_password_bindings.dart';
+import 'package:task_manager/feature/screen/signUp/sign_up_bindings.dart';
+import 'package:task_manager/feature/screen/signUp/sign_up_view.dart';
 import 'package:task_manager/feature/screen/splash_screen/splash_screen_bindings.dart';
 import 'package:task_manager/feature/screen/splash_screen/splash_screen_view.dart';
 
@@ -16,5 +20,9 @@ class AppRoutes{
     GetPage(name: AppPages.loginScreen, page: ()=>LoginScreenView(),binding: LoginScreenBindings()),
     GetPage(name: AppPages.forgetPassword, page: ()=>ForgetPasswordView(),binding: ForgetBindings()),
     GetPage(name: AppPages.pinVerification, page: ()=>PinVerificationView(),binding: PinVerificationBindings()),
+    GetPage(name: AppPages.setPassword, page: ()=>SetPasswordView(),binding: SetPasswordBindings()),
+    GetPage(name: AppPages.signUp, page: ()=>SignUpView(),binding: SignUpBindings()),
+
+
   ];
 }

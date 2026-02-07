@@ -28,7 +28,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                 SizedBox(height: 10),
                 TextFormField(decoration: InputDecoration(hintText: "Password")),
                 SizedBox(height: 20),
-                CommonButton(child: (){},),
+                CommonButton(child: ()=>controller.moveToSignUpScreenView(),),
                 SizedBox(height: 20,),
                 InkWell(
                     onTap: ()=>controller.moveToForgetPasswordViewPage(),

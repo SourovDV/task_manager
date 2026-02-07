@@ -47,7 +47,7 @@ class PinVerificationView extends GetView<PinVerificationController> {
                 }, appContext: context,
               ),
               SizedBox(height: 20,),
-              CommonButton(child: (){},),
+              CommonButton(child: ()=>controller.moveToSetPassword(),),
               SizedBox(height: 25,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
