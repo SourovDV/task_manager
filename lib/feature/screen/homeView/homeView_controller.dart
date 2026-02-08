@@ -1,5 +1,15 @@
 import 'package:get/get.dart';
+import 'package:task_manager/feature/screen/cancelled/cancelled_view.dart';
+import 'package:task_manager/feature/screen/completed/completed_view.dart';
+import 'package:task_manager/feature/screen/new/new_view.dart';
+import 'package:task_manager/feature/screen/progress/progress_view.dart';
 
 class HomeViewController extends GetxController{
-    final currentPageIndex = 0.obs;
+    RxInt currentPageIndex = 0.obs;
+     final List items = [
+      NewView(),
+      CompletedView(),
+      CancelledView(),
+      ProgressView(),
+    ];
 }

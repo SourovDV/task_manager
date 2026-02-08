@@ -12,6 +12,9 @@ class HomeViewView extends GetView<HomeViewController> {
     return Scaffold(
       appBar: CommonAppBar(),
       floatingActionButton: FloatingActionButton(onPressed: (){},backgroundColor: AppColor.greenColor,child: Icon(Icons.add),),
+        body: Obx(() =>
+        controller.items[controller.currentPageIndex.value]
+        ),
       bottomNavigationBar: Obx(()=>NavigationBar(
           onDestinationSelected: (index){
             controller.currentPageIndex.value = index;
