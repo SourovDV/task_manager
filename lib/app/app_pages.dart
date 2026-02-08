@@ -10,4 +10,5 @@ class AppPages{
   static final progress = "/progress";
   static final completed="/completed";
   static final cancelled = '/cancelled';
+  static final addItem = '/addItem';
 }

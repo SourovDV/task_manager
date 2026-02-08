@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TaskCard extends StatelessWidget {
-  const TaskCard({super.key});
-
+  const TaskCard({super.key, required this.text, required this.color});
+  final String text;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,11 +65,11 @@ class TaskCard extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 14, vertical: 6),
                     decoration: BoxDecoration(
-                      color: Colors.cyan,
+                      color: color,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Text(
-                      "New",
+                    child:  Text(
+                      text,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12,

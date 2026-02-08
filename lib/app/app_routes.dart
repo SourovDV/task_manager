@@ -1,5 +1,7 @@
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:task_manager/app/app_pages.dart';
+import 'package:task_manager/feature/screen/addItem/add_item_bindings.dart';
+import 'package:task_manager/feature/screen/addItem/add_item_view.dart';
 import 'package:task_manager/feature/screen/cancelled/cancelled_bindings.dart';
 import 'package:task_manager/feature/screen/cancelled/cancelled_view.dart';
 import 'package:task_manager/feature/screen/completed/completed_bindings.dart';
@@ -37,6 +39,8 @@ class AppRoutes{
     GetPage(name: AppPages.completed, page: ()=>CompletedView(),binding: CompletedBindings()),
     GetPage(name: AppPages.cancelled, page: ()=>CancelledView(),binding: CancelBindings()),
     GetPage(name: AppPages.progress, page: ()=>ProgressView(),binding: ProgressBindings()),
+    GetPage(name: AppPages.addItem, page: ()=>AddItemView(),binding: AddItemBindings()),
+
 
 
 

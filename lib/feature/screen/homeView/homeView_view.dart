@@ -11,22 +11,22 @@ class HomeViewView extends GetView<HomeViewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(),
-      floatingActionButton: FloatingActionButton(onPressed: (){},backgroundColor: AppColor.greenColor,child: Icon(Icons.add),),
-        body: Obx(() =>
-        controller.items[controller.currentPageIndex.value]
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        controller.moveToAddItemViewPage();
+      },backgroundColor: AppColor.greenColor,child: Icon(Icons.add),),
+        body: Obx(() => controller.items[controller.currentPageIndex.value]
         ),
       bottomNavigationBar: Obx(()=>NavigationBar(
           onDestinationSelected: (index){
             controller.currentPageIndex.value = index;
           },
-          indicatorColor: Colors.amber,
+          indicatorColor: AppColor.greenColor,
           selectedIndex: controller.currentPageIndex.value,
           destinations: [
-            NavigationDestination(
-                icon: Icon(Icons.newspaper_rounded), label:"New"),
             NavigationDestination(icon: Icon(Icons.newspaper_rounded), label:"New"),
-            NavigationDestination(icon: Icon(Icons.newspaper_rounded), label:"New"),
-            NavigationDestination(icon: Icon(Icons.newspaper_rounded), label:"New"),
+            NavigationDestination(icon: Icon(Icons.done), label:"Completed"),
+            NavigationDestination(icon: Icon(Icons.cancel), label:"Cancelled"),
+            NavigationDestination(icon: Icon(Icons.refresh), label:"Progress"),
           ]),)
     );
   }

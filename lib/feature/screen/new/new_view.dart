@@ -40,7 +40,7 @@ class NewView extends GetView<NewController> {
                     itemBuilder: (context,index){
                     return Column(
                       children: const [
-                        TaskCard(),
+                        TaskCard(text: "New",color: Colors.cyan,),
                         SizedBox(height: 8),
                       ],
                     );
