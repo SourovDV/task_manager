@@ -9,4 +9,8 @@ class LoginScreenController extends GetxController{
   void moveToSignUpScreenView (){
     Get.toNamed(AppPages.signUp);
   }
+
+  void moveToHomeViewPage(){
+    Get.offNamed(AppPages.homeView);
+  }
 }

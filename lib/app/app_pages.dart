@@ -5,4 +5,5 @@ class AppPages{
   static final pinVerification ='/verification';
   static final setPassword = '/setPassword';
   static final signUp="/signUp";
+  static final homeView = "/homeView";
 }

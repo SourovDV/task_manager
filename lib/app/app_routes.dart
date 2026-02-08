@@ -2,6 +2,8 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:task_manager/app/app_pages.dart';
 import 'package:task_manager/feature/screen/forgetPassword/forgetPassword_bindings.dart';
 import 'package:task_manager/feature/screen/forgetPassword/forgetPassword_view.dart';
+import 'package:task_manager/feature/screen/homeView/homeView_bindings.dart';
+import 'package:task_manager/feature/screen/homeView/homeView_view.dart';
 import 'package:task_manager/feature/screen/login_screen/login_screen_bindings.dart';
 import 'package:task_manager/feature/screen/login_screen/login_screen_view.dart';
 import 'package:task_manager/feature/screen/pinVerification/pin_verification_bindings.dart';
@@ -22,6 +24,8 @@ class AppRoutes{
     GetPage(name: AppPages.pinVerification, page: ()=>PinVerificationView(),binding: PinVerificationBindings()),
     GetPage(name: AppPages.setPassword, page: ()=>SetPasswordView(),binding: SetPasswordBindings()),
     GetPage(name: AppPages.signUp, page: ()=>SignUpView(),binding: SignUpBindings()),
+    GetPage(name: AppPages.homeView, page: ()=>HomeViewView(),binding: HomeViewBindings()),
+
 
 
   ];
