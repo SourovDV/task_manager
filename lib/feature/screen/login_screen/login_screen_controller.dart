@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/app/app_pages.dart';
+import 'package:task_manager/feature/controller/authController.dart';
+import 'package:task_manager/feature/data/model/user_model.dart';
 import 'package:task_manager/feature/data/services/network_caller.dart';
 import 'package:task_manager/feature/data/utils/urls.dart';
 
@@ -56,6 +58,9 @@ class LoginScreenController extends GetxController{
     NetworkResponse response = await NetworkCaller.postRequest(url: Urls.login,data: registerData);
     loginLoading.value = false;
     if(response.isSuccess){
+      final token = response.responseData!["token"];
+      final model = UserModel.fromJson(response.responseData!["data"]);
+      await AuthController.saveData(token, model);
       Get.snackbar(
         'Success',
         'Account created successfully',
