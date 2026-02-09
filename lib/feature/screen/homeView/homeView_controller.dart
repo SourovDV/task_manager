@@ -17,4 +17,8 @@ class HomeViewController extends GetxController{
      void moveToAddItemViewPage(){
        Get.toNamed(AppPages.addItem);
      }
+
+     void moveToProfilePage(){
+       Get.toNamed(AppPages.profile);
+     }
 }

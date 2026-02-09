@@ -13,7 +13,7 @@ class AddItemView extends GetView<AddItemController> {
   Widget build(BuildContext context) {
     final theme =Theme.of(context).textTheme;
     return Scaffold(
-      appBar: CommonAppBar(),
+      appBar: CommonAppBar(child: controller.moveToProfilePage,),
       body: CommonBackground(
         child: Form(
           child: Padding(

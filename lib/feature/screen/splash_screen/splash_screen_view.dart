@@ -11,7 +11,7 @@ class SplashScreenView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CommonBackground(child: SvgPicture.asset(AssetPath.logo)),
+      body: CommonBackground(child: Center(child: SvgPicture.asset(AssetPath.logo))),
     );
   }
 }

@@ -12,9 +12,9 @@ class LoginScreenView extends GetView<LoginScreenController> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: CommonBackground(
+      body: CommonBackground(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Form(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

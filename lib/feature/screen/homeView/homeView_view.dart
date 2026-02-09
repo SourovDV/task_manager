@@ -10,7 +10,7 @@ class HomeViewView extends GetView<HomeViewController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonAppBar(),
+      appBar: CommonAppBar(child: controller.moveToProfilePage,),
       floatingActionButton: FloatingActionButton(onPressed: (){
         controller.moveToAddItemViewPage();
       },backgroundColor: AppColor.greenColor,child: Icon(Icons.add),),

@@ -16,6 +16,8 @@ import 'package:task_manager/feature/screen/new/new_bindings.dart';
 import 'package:task_manager/feature/screen/new/new_view.dart';
 import 'package:task_manager/feature/screen/pinVerification/pin_verification_bindings.dart';
 import 'package:task_manager/feature/screen/pinVerification/pinverification_view.dart';
+import 'package:task_manager/feature/screen/profile/profile_bindings.dart';
+import 'package:task_manager/feature/screen/profile/profile_view.dart';
 import 'package:task_manager/feature/screen/progress/progress_bindings.dart';
 import 'package:task_manager/feature/screen/progress/progress_view.dart';
 import 'package:task_manager/feature/screen/setPassword/setPasswordView.dart';
@@ -40,6 +42,8 @@ class AppRoutes{
     GetPage(name: AppPages.cancelled, page: ()=>CancelledView(),binding: CancelBindings()),
     GetPage(name: AppPages.progress, page: ()=>ProgressView(),binding: ProgressBindings()),
     GetPage(name: AppPages.addItem, page: ()=>AddItemView(),binding: AddItemBindings()),
+    GetPage(name: AppPages.profile, page: ()=>ProfileView(),binding: ProfileBindings()),
+
 
 
 

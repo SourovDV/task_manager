@@ -11,4 +11,5 @@ class AppPages{
   static final completed="/completed";
   static final cancelled = '/cancelled';
   static final addItem = '/addItem';
+  static final profile = '/profile';
 }

@@ -17,7 +17,7 @@ class PinVerificationView extends GetView<PinVerificationController> {
           padding: const EdgeInsets.all(40.0),
           child: Form(child: Column(
             children: [
-              SizedBox(height: 250,),
+              SizedBox(height: 150,),
               Text(context.localization.pinVerification,style: theme.titleLarge,),
               SizedBox(height: 8,),
               Text(context.localization.a6DigitVerificationPinWillSendToYourEmailAddress,style: theme.titleMedium,),

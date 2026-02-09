@@ -16,7 +16,7 @@ class SetPasswordView extends GetView<SetPasswordController> {
           padding: const EdgeInsets.all(15.0),
           child: Form(child: Column(
             children: [
-              SizedBox(height: 250,),
+              SizedBox(height: 150,),
               Text(context.localization.setPassword,style: theme.titleLarge,),
               SizedBox(height: 8,),
               Text(context.localization.minimumLengthPassword8CharacterWithLatterAndNumber,style: theme.titleMedium,),
@@ -40,7 +40,9 @@ class SetPasswordView extends GetView<SetPasswordController> {
                 children: [
                   Text(context.localization.haveAccount),
                   SizedBox(width: 5,),
-                  Text(context.localization.signIn,style: theme.titleSmall,)
+                  InkWell(
+                      onTap: ()=>controller.moveToSignInPage(),
+                      child: Text(context.localization.signIn,style: theme.titleSmall,))
                 ],
               )
             ],
