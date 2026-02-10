@@ -33,6 +33,7 @@ class ProfileView extends GetView<ProfileController> {
             ),
 
 
+
             SizedBox(height: 10,),
             TextFormField(decoration: InputDecoration(hintText: "Email"),),
             SizedBox(height: 10,),
