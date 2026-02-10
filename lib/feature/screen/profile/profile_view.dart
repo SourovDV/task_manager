@@ -43,8 +43,7 @@ class ProfileView extends GetView<ProfileController> {
             TextFormField(decoration: InputDecoration(hintText: "Password"),),
             SizedBox(height: 20,),
             CommonButton(child: (){})
-
-          ],
+          ]
         ),),
       )
       )
