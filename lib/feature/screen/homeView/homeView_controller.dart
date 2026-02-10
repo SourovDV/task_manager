@@ -21,4 +21,7 @@ class HomeViewController extends GetxController{
      void moveToProfilePage(){
        Get.toNamed(AppPages.profile);
      }
+     void moveToLoginScreen(){
+       Get.offNamed(AppPages.loginScreen);
+     }
 }

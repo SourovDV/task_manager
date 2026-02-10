@@ -5,4 +5,8 @@ class AddItemController extends GetxController{
   void moveToProfilePage(){
     Get.toNamed(AppPages.profile);
   }
+
+  void moveToLogin(){
+    Get.offNamed(AppPages.loginScreen);
+  }
 }
