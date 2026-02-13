@@ -4,11 +4,14 @@ import 'package:get/get.dart';
 import 'package:task_manager/app/app_pages.dart';
 import 'package:task_manager/feature/data/services/network_caller.dart';
 import 'package:task_manager/feature/data/utils/urls.dart';
+import 'package:task_manager/feature/screen/new/new_controller.dart';
 
 class AddItemController extends GetxController {
   TextEditingController subjectController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   final addItemKey = GlobalKey<FormState>();
+  final NewController newController = Get.find<NewController>();
+
   RxBool addItemLoading = false.obs;
 
   void submitAddItem() {
@@ -33,6 +36,9 @@ class AddItemController extends GetxController {
     addItemLoading.value = false;
     if(response.isSuccess){
       Get.toNamed(AppPages.homeView);
+      // 👇 আবার API call করাও
+      newController.taskCount();
+      newController.taskCountByData();
       Get.snackbar(
         'Success',
         'Item Added',

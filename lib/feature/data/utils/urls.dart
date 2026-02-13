@@ -7,5 +7,6 @@ class Urls{
   static String taskCountById(String id) {
     return "$_baseUrl/listTaskByStatus/$id";
   }
+  static String deleteData(String id)=>"$_baseUrl/deleteTask/$id";
 
 }

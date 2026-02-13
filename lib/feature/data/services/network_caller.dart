@@ -56,6 +56,7 @@ class NetworkCaller {
      Uri uri = Uri.parse(url);
      Response response = await post(uri,body: jsonEncode(data),headers: {
        'content-type': 'application/json',
+       'token':AuthController.accessToken ?? "sd"
      });
      debugPrint("url $url");
      debugPrint("response body : ${response.body}");
@@ -70,4 +71,8 @@ class NetworkCaller {
      return NetworkResponse(isSuccess: false, statusCode: -1,errorSms: e.toString());
    }
   }
+
+  //delete request
+
+
 }
