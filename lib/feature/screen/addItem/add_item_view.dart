@@ -20,22 +20,40 @@ class AddItemView extends GetView<AddItemController> {
       }),
       body: CommonBackground(
         child: Form(
+          key: controller.addItemKey,
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-               SizedBox(height: 80,),
-                Text(context.localization.addNewTask,style: theme.titleLarge,),
-                SizedBox(height: 10,),
-                TextFormField(decoration: InputDecoration(hintText: "Subject")),
-                SizedBox(height: 10),
-                TextFormField(
-                  maxLines: 5,
-                  decoration: InputDecoration(hintText: "Description"),
-                ),
-                SizedBox(height: 20,),
-                CommonButton(child:(){} )
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                 SizedBox(height: 80,),
+                  Text(context.localization.addNewTask,style: theme.titleLarge,),
+                  SizedBox(height: 10,),
+                  TextFormField(decoration: InputDecoration(hintText: "Subject"),
+                  controller: controller.subjectController,
+                   validator: controller.subjectAndDescriptionValidate,
+                  ),
+                  SizedBox(height: 10),
+                  TextFormField(
+                    maxLines: 5,
+                    decoration: InputDecoration(hintText: "Description"),
+                    controller: controller.descriptionController,
+                    validator: controller.subjectAndDescriptionValidate,
+                  ),
+                  SizedBox(height: 20,),
+               Obx((){
+                 return  Visibility(
+                   visible: controller.addItemLoading.value == false,
+                   replacement: Center(
+                     child: CircularProgressIndicator(),
+                   ),
+                   child: CommonButton(child:(){
+                     controller.submitAddItem();
+                   } ),
+                 );
+               })
+                ],
+              ),
             ),
           ),
         ),

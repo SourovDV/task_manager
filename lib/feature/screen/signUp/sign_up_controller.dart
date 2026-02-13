@@ -76,54 +76,53 @@ class SignUpController extends GetxController{
   }
   //submit button
 
-  void submitButton(){
+  void submitButton()async{
     if(key.currentState!.validate()){
-    registerUser();
+    await registerUser();
     clearForm();
     }
   }
 //post api call
-
-  Future<void> registerUser()async{
+  Future<void> registerUser() async {
     registerLoading.value = true;
-    Map<String,dynamic> registerData={
-      "email":emailController.text.trim(),
-    "firstName":firstNameController.text.trim(),
-    "lastName":lastNameController.text.trim(),
-    "mobile":mobileController.text.trim(),
-    "password":passwordController.text,
-    "photo":""
+
+    Map<String, dynamic> registerData = {
+      "email": emailController.text.trim(),
+      "firstName": firstNameController.text.trim(),
+      "lastName": lastNameController.text.trim(),
+      "mobile": mobileController.text.trim(),
+      "password": passwordController.text,
+      "photo": ""
     };
-    NetworkResponse response = await NetworkCaller.postRequest(url: Urls.register,data: registerData);
+
+    NetworkResponse response = await NetworkCaller.postRequest(
+      url: Urls.register,
+      data: registerData,
+    );
+
     registerLoading.value = false;
-    if(response.isSuccess){
-      Get.snackbar(
-        'Success',
-        'Account created successfully',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.black,
-        colorText: Colors.white,
-        margin: EdgeInsets.all(12),
-        borderRadius: 8,
-        duration: Duration(seconds: 2),
-      );
+
+    if (response.isSuccess &&
+        response.responseData?["status"] == "success") {
+
+      Get.snackbar("Success", "Account created successfully");
+
       clearForm();
-      Get.offNamed(AppPages.homeView);
-    }else{
+
+      /// Go Login screen (NOT Home)
+      Get.offNamed(AppPages.loginScreen);
+
+    } else {
+
       Get.snackbar(
-        'false',
-        'Account created successfully',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.black,
-        colorText: Colors.white,
-        margin: EdgeInsets.all(12),
-        borderRadius: 8,
-        duration: Duration(seconds: 2),
+        "Error",
+        response.responseData?["status"] == "fail"
+            ? "Email already exists"
+            : "Registration failed",
       );
-
     }
-
   }
+
 
   //clear data
    void clearForm(){
@@ -135,7 +134,7 @@ class SignUpController extends GetxController{
    }
 
   void moveToSignInPage(){
-    Get.toNamed(AppPages.loginScreen);
+    Get.offNamed(AppPages.loginScreen);
   }
 
   @override

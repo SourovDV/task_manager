@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/feature/common/statusCard.dart';
-import 'package:task_manager/feature/common/task_card.dart';
 import 'package:task_manager/feature/screen/new/new_controller.dart';
 
 class NewView extends GetView<NewController> {
@@ -16,36 +15,38 @@ class NewView extends GetView<NewController> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              /// Top Status Cards
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    StatusCard(title: "Cancelled", count: "09"),
-                    SizedBox(width: 5,),
-                    StatusCard(title: "Completed", count: "09"),
-                    SizedBox(width: 5,),
-                    StatusCard(title: "Progress", count: "09"),
-                    SizedBox(width: 5,),
-                    StatusCard(title: "New Task", count: "09"),
-                  ],
-                ),
+              /// 🔹 Top Horizontal Status Card
+              SizedBox(
+                height: 110,
+                child: Obx(() {
+                  if (controller.taskCountProgress.value) {
+                    return const Center(
+                        child: CircularProgressIndicator());
+                  }
+
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount:
+                    controller.taskByStatusCount?.data?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      final item =
+                      controller.taskByStatusCount!.data![index];
+
+                      return Padding(
+                        padding:
+                        const EdgeInsets.only(right: 10),
+                        child: StatusCard(
+                          title: item.sId ?? "0",
+                          count: item.sum.toString(),
+                        ),
+                      );
+                    },
+                  );
+                }),
               ),
               const SizedBox(height: 20),
-              //task List
-              Expanded(
-                child: ListView.builder(
-                    itemCount: 5,
-                    itemBuilder: (context,index){
-                    return Column(
-                      children: const [
-                        TaskCard(text: "New",color: Colors.cyan,),
-                        SizedBox(height: 8),
-                      ],
-                    );
-                }),
-              )
+              /// 🔹 Bottom New Task List (Second API)
+
             ],
           ),
         ),
@@ -53,4 +54,5 @@ class NewView extends GetView<NewController> {
     );
   }
 }
+
 

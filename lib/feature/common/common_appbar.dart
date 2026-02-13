@@ -21,7 +21,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(AuthController.accessModel?.fullName ??"",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                Text(AuthController.accessModel?.fullName ??"sourov",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
                 Text(AuthController.accessModel?.email??"",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400),)
               ],
             ),

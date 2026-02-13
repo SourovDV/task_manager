@@ -31,7 +31,7 @@ class StatusCard extends StatelessWidget {
         children: [
           Text(
             count,
-            style: const TextStyle(
+            style:  TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
