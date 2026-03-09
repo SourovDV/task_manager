@@ -76,11 +76,15 @@ class SignUpView extends GetView<SignUpController> {
                   children: [
                     Text(context.localization.haveAccount),
                     SizedBox(width: 5,),
-                    InkWell(
-                      onTap: (){
-                        controller.moveToSignInPage();
-                      },
-                        child: Text(context.localization.signIn,style: theme.titleSmall,))
+                  Obx(()=> Visibility(
+                    visible: controller.isRegisterProgress == false,
+                    replacement: CircularProgressIndicator(),
+                    child: InkWell(
+                        onTap: (){
+                          controller.submitButton();
+                        },
+                        child: Text(context.localization.signIn,style: theme.titleSmall,)),
+                  ))
                   ],
                 )
               ],

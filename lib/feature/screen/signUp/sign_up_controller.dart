@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/app/app_pages.dart';
 import 'package:task_manager/data/services/network_caller.dart';
+import 'package:task_manager/data/utils/utils.dart';
 
 class SignUpController extends GetxController {
   final key = GlobalKey<FormState>();
@@ -11,23 +12,41 @@ class SignUpController extends GetxController {
   TextEditingController lastNameController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  RxBool isRegisterProgress = false.obs;
 
 
-  void submitButton(){
-    if(key.currentState!.validate()){
-
+  void submitButton() {
+    if (key.currentState!.validate()) {
+      registerUser();
     }
   }
 
   //call api
-  Future<void> registerUser()async{
-      NetworkResponses networkResponses =await NetworkCaller.postRequest(url: )
+  Future<void> registerUser() async {
+    final data = {
+      "email": emailController.text.trim(),
+      "firstName": firstNameController.text.trim(),
+      "lastName": lastNameController.text.trim(),
+      "mobile": mobileController.text.trim(),
+      "password": passwordController.text,
+      "photo": ""
+    };
+    isRegisterProgress.value = true;
+    NetworkResponses networkResponses = await NetworkCaller.postRequest(
+        url: Urls.createUser, body:data);
+    isRegisterProgress.value= false;
+    if(networkResponses.isSuccess){
+      Get.toNamed(AppPages.homeView);
+    }else{
+      print("false");
+    }
   }
 
-  void moveToHomeScreen(){
+  void moveToHomeScreen() {
     Get.toNamed(AppPages.homeView);
   }
-  void moveToSignInPage(){
+
+  void moveToSignInPage() {
     Get.toNamed(AppPages.loginScreen);
   }
 
