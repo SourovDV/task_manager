@@ -28,7 +28,7 @@ class SignUpView extends GetView<SignUpController> {
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.emailController,
-                  validator: controller.emailValidator,
+
                 ),
                 SizedBox(height: 10,),
                 TextFormField(
@@ -37,7 +37,7 @@ class SignUpView extends GetView<SignUpController> {
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.firstNameController,
-                  validator: controller.firstNameValidator,
+
                 ),
                 SizedBox(height: 10,),
                 TextFormField(
@@ -46,7 +46,7 @@ class SignUpView extends GetView<SignUpController> {
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.lastNameController,
-                  validator: controller.lastNameValidator,
+
                 ),
                 SizedBox(height: 10,),
                 TextFormField(
@@ -55,7 +55,7 @@ class SignUpView extends GetView<SignUpController> {
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.mobileController,
-                  validator: controller.phoneValidator,
+
                 ),
                 SizedBox(height: 10,),
                 TextFormField(
@@ -64,15 +64,12 @@ class SignUpView extends GetView<SignUpController> {
                   ),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.passwordController,
-                  validator: controller.passwordValidator,
+
                 ),
                 SizedBox(height: 20,),
-                Obx((){
-                   return Visibility(
-                       visible: controller.registerLoading.value == false,
-                       replacement: Center(child: CircularProgressIndicator(),),
-                       child: CommonButton(child:()=>controller.submitButton()));
-                }),
+                CommonButton(child: () {
+                  controller.moveToHomeScreen();
+                },),
                 SizedBox(height: 25,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +77,6 @@ class SignUpView extends GetView<SignUpController> {
                     Text(context.localization.haveAccount),
                     SizedBox(width: 5,),
                     InkWell(
-                        onTap: ()=>controller.moveToSignInPage(),
                         child: Text(context.localization.signIn,style: theme.titleSmall,))
                   ],
                 )

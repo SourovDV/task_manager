@@ -4,7 +4,6 @@ import 'package:task_manager/core/context_extension.dart';
 import 'package:task_manager/feature/common/commonButton.dart';
 import 'package:task_manager/feature/common/common_appbar.dart';
 import 'package:task_manager/feature/common/common_background.dart';
-import 'package:task_manager/feature/controller/authController.dart';
 import 'package:task_manager/feature/screen/profile/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
@@ -14,8 +13,7 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar:CommonAppBar(child: (){} ,secondChild: ()async{
-        await AuthController.clearData();
+      appBar:CommonAppBar(child: (){} ,secondChild: (){
         controller.moveToLogin();
       }),
       body:CommonBackground(child: Padding(

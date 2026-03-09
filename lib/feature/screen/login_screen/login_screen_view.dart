@@ -31,21 +31,16 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       hintText: "Email"
                   ),
                     controller: controller.emailController,
-                    validator: controller.emailValidator,
+
                   ),
                   SizedBox(height: 10),
                   TextFormField(
                     decoration: InputDecoration(hintText: "Password"),
                     controller: controller.passwordController,
-                    validator: controller.passwordValidator,
+
                   ),
                   SizedBox(height: 20),
-                 Obx((){
-                   return Visibility(
-                       visible: controller.loginLoading.value ==false,
-                       replacement: Center(child: CircularProgressIndicator(),),
-                       child: CommonButton(child: () => controller.submitLoginUserData()));
-                 }),
+                CommonButton(child: () => controller.submitLoginUserData()),
                   SizedBox(height: 20),
                   InkWell(
                     onTap: () => controller.moveToForgetPasswordViewPage(),

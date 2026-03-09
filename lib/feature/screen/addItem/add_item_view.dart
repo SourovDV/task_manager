@@ -4,7 +4,6 @@ import 'package:task_manager/core/context_extension.dart';
 import 'package:task_manager/feature/common/commonButton.dart';
 import 'package:task_manager/feature/common/common_appbar.dart';
 import 'package:task_manager/feature/common/common_background.dart';
-import 'package:task_manager/feature/controller/authController.dart';
 import 'package:task_manager/feature/screen/addItem/add_item_controller.dart';
 
 class AddItemView extends GetView<AddItemController> {
@@ -15,7 +14,6 @@ class AddItemView extends GetView<AddItemController> {
     final theme =Theme.of(context).textTheme;
     return Scaffold(
       appBar: CommonAppBar(child: controller.moveToProfilePage,secondChild: ()async{
-        await AuthController.clearData();
         controller.moveToLogin();
       }),
       body: CommonBackground(
