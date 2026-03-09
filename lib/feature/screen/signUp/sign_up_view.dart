@@ -77,6 +77,9 @@ class SignUpView extends GetView<SignUpController> {
                     Text(context.localization.haveAccount),
                     SizedBox(width: 5,),
                     InkWell(
+                      onTap: (){
+                        controller.moveToSignInPage();
+                      },
                         child: Text(context.localization.signIn,style: theme.titleSmall,))
                   ],
                 )
