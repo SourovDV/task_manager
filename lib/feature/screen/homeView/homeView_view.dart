@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/app/appColor.dart';
+import 'package:task_manager/app/app_pages.dart';
 import 'package:task_manager/feature/common/common_appbar.dart';
+import 'package:task_manager/feature/screen/auth_controller/auth_controller.dart';
 import 'package:task_manager/feature/screen/homeView/homeView_controller.dart';
 
 class HomeViewView extends GetView<HomeViewController> {
@@ -11,8 +13,8 @@ class HomeViewView extends GetView<HomeViewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(child: controller.moveToProfilePage,secondChild: (){
-
-        controller.moveToLoginScreen();
+        AuthController.logOut();
+        Get.toNamed(AppPages.loginScreen);
       },),
       floatingActionButton: FloatingActionButton(onPressed: (){
         controller.moveToAddItemViewPage();

@@ -22,8 +22,7 @@ class NetworkCaller {
   static Future<NetworkResponses> getRequest({
     required String url,
     Map<String, dynamic>? parems,
-  }) async
-  {
+  }) async {
     try {
       Uri uri = Uri.parse(url);
       debugPrint("${url}");
@@ -60,9 +59,11 @@ class NetworkCaller {
     try {
       Uri uri = Uri.parse(url);
       debugPrint("${url}");
-      Response response = await post(uri,headers: {
-        'Content-Type': 'application/json'
-      },body:jsonEncode(body));
+      Response response = await post(
+        uri,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(body),
+      );
       debugPrint("${response.body}");
       debugPrint("${response.statusCode}");
       if (response.statusCode == 200) {
@@ -86,4 +87,8 @@ class NetworkCaller {
     }
   }
 
+  //delete
+// static Future<NetworkResponses> deleteRequest({required String url}){
+//
+// }
 }

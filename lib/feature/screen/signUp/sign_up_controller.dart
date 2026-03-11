@@ -36,9 +36,18 @@ class SignUpController extends GetxController {
         url: Urls.createUser, body:data);
     isRegisterProgress.value= false;
     if(networkResponses.isSuccess){
+      Get.snackbar(
+        "Title",
+        "SuccessFull register",
+        snackPosition: SnackPosition.BOTTOM,
+      );
       Get.toNamed(AppPages.homeView);
     }else{
-      print("false");
+      Get.snackbar(
+        "Title",
+        "error message",
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 
