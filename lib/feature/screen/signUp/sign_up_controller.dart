@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/app/app_pages.dart';
 import 'package:task_manager/data/services/network_caller.dart';
-import 'package:task_manager/data/utils/utils.dart';
+import 'package:task_manager/data/utils.dart';
 
 class SignUpController extends GetxController {
   final key = GlobalKey<FormState>();
@@ -14,6 +14,25 @@ class SignUpController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   RxBool isRegisterProgress = false.obs;
 
+  //post api call
+  Future<void> registerUser()async{
+    isRegisterProgress.value = true;
+    NetworkResponces networkResponces =await NetworkCaller.postRequest(url:Urls.registerUser,body: {
+      "email":emailController.text,
+      "firstName":firstNameController.text,
+      "lastName":lastNameController.text,
+      "mobile":mobileController.text,
+      "password":passwordController.text,
+      "photo":""
+    });
+    isRegisterProgress.value = false;
+    if(networkResponces.isSuccess){
+      Get.snackbar("success", "Congrats");
+      Get.toNamed(AppPages.homeView);
+    }else{
+      Get.snackbar("false","sorry");
+    }
+  }
 
   void submitButton() {
     if (key.currentState!.validate()) {
@@ -21,35 +40,7 @@ class SignUpController extends GetxController {
     }
   }
 
-  //call api
-  Future<void> registerUser() async {
-    final data = {
-      "email": emailController.text.trim(),
-      "firstName": firstNameController.text.trim(),
-      "lastName": lastNameController.text.trim(),
-      "mobile": mobileController.text.trim(),
-      "password": passwordController.text,
-      "photo": ""
-    };
-    isRegisterProgress.value = true;
-    NetworkResponses networkResponses = await NetworkCaller.postRequest(
-        url: Urls.createUser, body:data);
-    isRegisterProgress.value= false;
-    if(networkResponses.isSuccess){
-      Get.snackbar(
-        "Title",
-        "SuccessFull register",
-        snackPosition: SnackPosition.BOTTOM,
-      );
-      Get.toNamed(AppPages.homeView);
-    }else{
-      Get.snackbar(
-        "Title",
-        "error message",
-        snackPosition: SnackPosition.BOTTOM,
-      );
-    }
-  }
+
 
   void moveToHomeScreen() {
     Get.toNamed(AppPages.homeView);

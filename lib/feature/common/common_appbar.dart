@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/app/appColor.dart';
-import 'package:task_manager/feature/screen/auth_controller/auth_controller.dart';
+import 'package:task_manager/feature/screen/authController/AuthController.dart';
 
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CommonAppBar({
@@ -22,8 +22,8 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("${AuthController.userData?.firstName ?? "sfsf"}",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
-                  Text("${AuthController.userData?.email ?? "email"}",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400),)
+                  Text("${AuthController.user_model?.lastName ?? "sourov"}",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                  Text("${AuthController.user_model?.email ?? "sourov@gmail.com"}",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400),)
                 ],
               ),
             ),

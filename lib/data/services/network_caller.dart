@@ -1,94 +1,51 @@
+
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 
-class NetworkResponses {
-  final int statusCode;
-  final Map<String, dynamic>? responsData;
-  final bool isSuccess;
-  final String? errorSms;
-
-  NetworkResponses({
-    required this.statusCode,
-    this.responsData,
-    required this.isSuccess,
-    this.errorSms,
-  });
+class NetworkResponces{
+    int statusCode;
+    Map<String,dynamic> ? responcesData;
+    String ? errorSms;
+    bool isSuccess;
+    NetworkResponces({required this.statusCode, this.responcesData,this.errorSms,required this.isSuccess});
 }
 
-class NetworkCaller {
-  //for get api
-  static Future<NetworkResponses> getRequest({
-    required String url,
-    Map<String, dynamic>? parems,
-  }) async {
-    try {
-      Uri uri = Uri.parse(url);
-      debugPrint("${url}");
-      Response response = await get(uri);
-      debugPrint("${response.body}");
-      debugPrint("${response.statusCode}");
-      if (response.statusCode == 200) {
-        return NetworkResponses(
-          responsData: jsonDecode(response.body),
-          statusCode: response.statusCode,
-          isSuccess: true,
-        );
-      } else {
-        return NetworkResponses(
-          statusCode: response.statusCode,
-          isSuccess: false,
-        );
-      }
-    } catch (e) {
-      return NetworkResponses(
-        statusCode: -1,
-        isSuccess: false,
-        errorSms: e.toString(),
-      );
-    }
+class NetworkCaller{
+// get operation
+static Future<NetworkResponces> getRequest({required String url})async{
+try{
+  Uri uri = Uri.parse(url);
+  Response response =await get(uri);
+  if(response.statusCode == 200){
+    return NetworkResponces(statusCode: response.statusCode, isSuccess: true, responcesData: jsonDecode(response.body));
+  }else{
+    return NetworkResponces(statusCode: response.statusCode, isSuccess: false, errorSms: "Something wrong");
   }
+}catch(e){
+  return NetworkResponces(statusCode: -1, isSuccess: false,errorSms: "network issue");
+}
 
-  //post api
-  static Future<NetworkResponses> postRequest({
-    required String url,
-    Map<String, dynamic>? body,
-  }) async
-  {
-    try {
-      Uri uri = Uri.parse(url);
-      debugPrint("${url}");
-      Response response = await post(
-        uri,
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode(body),
-      );
-      debugPrint("${response.body}");
-      debugPrint("${response.statusCode}");
-      if (response.statusCode == 200) {
-        return NetworkResponses(
-          responsData: jsonDecode(response.body),
-          statusCode: response.statusCode,
-          isSuccess: true,
-        );
-      } else {
-        return NetworkResponses(
-          statusCode: response.statusCode,
-          isSuccess: false,
-        );
+}
+
+//post operation
+ static Future<NetworkResponces> postRequest({required String url,Map<String,dynamic>? body})async{
+    try{
+      Uri uri = Uri.parse(url,);
+      debugPrint("url => $uri");
+      Response response =await post(uri,headers:
+        {'Content-Type': 'application/json'},body: jsonEncode(body));
+      debugPrint("respond $response");
+      debugPrint("body : ${response.body}");
+      if(response.statusCode == 200){
+        return NetworkResponces(statusCode: response.statusCode, isSuccess: true, responcesData: jsonDecode(response.body));
+      }else{
+        return NetworkResponces(statusCode: response.statusCode, isSuccess: false, errorSms: "Something wrong");
       }
-    } catch (e) {
-      return NetworkResponses(
-        statusCode: -1,
-        isSuccess: false,
-        errorSms: e.toString(),
-      );
+    }catch(e){
+      return NetworkResponces(statusCode: -1, isSuccess: false,errorSms: "network issue");
     }
-  }
 
-  //delete
-// static Future<NetworkResponses> deleteRequest({required String url}){
-//
-// }
+  }
 }

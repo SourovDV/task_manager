@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_manager/app/app_pages.dart';
-import 'package:task_manager/data/models/user_model.dart';
+import 'package:task_manager/data/model/userModel.dart';
 import 'package:task_manager/data/services/network_caller.dart';
-import 'package:task_manager/data/utils/utils.dart';
-import 'package:task_manager/feature/screen/auth_controller/auth_controller.dart';
+import 'package:task_manager/data/utils.dart';
+import 'package:task_manager/feature/screen/authController/AuthController.dart';
+
 
 class LoginScreenController extends GetxController{
   final loginKey = GlobalKey<FormState>();
@@ -17,34 +18,26 @@ class LoginScreenController extends GetxController{
   //submit button
   void submitLoginUserData(){
     if(loginKey.currentState!.validate()){
-      moveToNextPage();
       // clearFields();
+      loginUser();
     }
   }
-//api calling
 
-  Future<void> moveToNextPage()async{
-    NetworkResponses networkResponses =await NetworkCaller.postRequest(url: Urls.loginUser,body: {
+  // post request for log in
+  Future<void> loginUser()async{
+    NetworkResponces networkResponces =await NetworkCaller.postRequest(url: Urls.loginUser,body: {
       "email":emailController.text,
       "password":passwordController.text
     });
-    if(networkResponses.isSuccess){
-     String token =await networkResponses.responsData!["token"];
-     print("token = $token");
-     UserModel model =await UserModel.formJson(networkResponses.responsData!["data"]);
-     await AuthController.saveUserData(token,model);
-      Get.snackbar(
-        "Title",
-        "Login Successfully",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+    if(networkResponces.isSuccess){
+      String token = networkResponces.responcesData!["token"];
+      UserModel model = UserModel.formJson(networkResponces.responcesData!["data"]);
+      AuthController.saveData(token, model);
+
+      Get.snackbar("success", "login success");
       Get.toNamed(AppPages.homeView);
     }else{
-      Get.snackbar(
-        "Title",
-        "login false",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      Get.snackbar("false", "something wrong");
     }
   }
 

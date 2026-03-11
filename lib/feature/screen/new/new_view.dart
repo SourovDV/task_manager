@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager/data/model/task_status_count_model.dart';
+import 'package:task_manager/data/model/task_status_model.dart';
 import 'package:task_manager/feature/common/statusCard.dart';
 import 'package:task_manager/feature/screen/new/new_controller.dart';
 
@@ -16,23 +18,23 @@ class NewView extends GetView<NewController> {
           child: Column(
             children: [
               /// 🔹 Top Horizontal Status Card
-              SizedBox(
-                height: 110,
-                child:  ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount:2,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding:
-                      const EdgeInsets.only(right: 10),
-                      child: StatusCard(
-                        title: "Sourov",
-                        count:"5",
-                      ),
-                    );
-                  },
-                ),
-              ),
+             Obx(()=> SizedBox(
+               height: 110,
+               child:  ListView.builder(
+                 scrollDirection: Axis.horizontal,
+                 itemCount:controller.taskStatusCount.value?.data?.length ?? 2,
+                 itemBuilder: (context, index) {
+                   return Padding(
+                     padding:
+                     const EdgeInsets.only(right: 10),
+                     child: StatusCard(
+                       title: "${controller.taskStatusCount.value?.data?[index].sum ?? "sourov"}",
+                       count:"${controller.taskStatusCount.value?.data?[index].sId ?? 5}",
+                     ),
+                   );
+                 },
+               ),
+             ),),
               const SizedBox(height: 20),
               /// 🔹 Bottom New Task List (Second API)
               Expanded(
